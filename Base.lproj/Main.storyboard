@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="svO-8R-jER">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="svO-8R-jER">
     <device id="ipad9_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -59,6 +59,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="b17-i8-Zmv"/>
                     </view>
+                    <nil key="simulatedTopBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ogh-ZS-Dvl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -237,18 +238,6 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HardCPUIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Jkv-bY-SQe">
                                 <rect key="frame" x="557" y="802" width="130" height="130"/>
                             </imageView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dUk-MJ-FfE">
-                                <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
-                                <items>
-                                    <barButtonItem title="Back" id="i7L-Bp-81I">
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <connections>
-                                            <action selector="backButton:" destination="nr8-Jo-3wD" id="YXn-ow-SK3"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </items>
-                                <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </toolbar>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rYo-Up-4lf">
                                 <rect key="frame" x="338" y="946" width="92" height="58"/>
                                 <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="40"/>
@@ -282,17 +271,14 @@
                             <constraint firstItem="I56-Bn-c7S" firstAttribute="centerY" secondItem="Cy3-lS-kig" secondAttribute="centerY" id="F2S-bs-f41"/>
                             <constraint firstItem="XLP-jy-WDP" firstAttribute="leading" secondItem="tIs-Lc-k8o" secondAttribute="trailing" constant="-192" id="Ftd-CZ-gxd"/>
                             <constraint firstItem="Vbh-sW-NFk" firstAttribute="leading" secondItem="tIs-Lc-k8o" secondAttribute="trailing" constant="-429" id="HK5-aF-mSt"/>
-                            <constraint firstItem="Vwh-Uf-Ef4" firstAttribute="trailing" secondItem="dUk-MJ-FfE" secondAttribute="trailing" id="HoM-GQ-2y4"/>
                             <constraint firstItem="XLP-jy-WDP" firstAttribute="centerY" secondItem="tIs-Lc-k8o" secondAttribute="centerY" id="IN2-B3-XS1"/>
                             <constraint firstItem="I56-Bn-c7S" firstAttribute="leading" secondItem="Cy3-lS-kig" secondAttribute="trailing" constant="-192" id="Ol8-Ma-zJB"/>
                             <constraint firstItem="iD6-gO-Jqn" firstAttribute="centerY" secondItem="1Vm-01-kXE" secondAttribute="centerY" id="PnG-Qh-4Ha"/>
                             <constraint firstItem="Rsx-9H-X4W" firstAttribute="centerY" secondItem="Cy3-lS-kig" secondAttribute="centerY" id="VgE-ul-JZE"/>
                             <constraint firstItem="Rsx-9H-X4W" firstAttribute="leading" secondItem="Cy3-lS-kig" secondAttribute="trailing" constant="-429" id="XBy-mp-Uvn"/>
                             <constraint firstItem="jqg-rN-N7M" firstAttribute="centerY" secondItem="tIs-Lc-k8o" secondAttribute="centerY" id="aE6-XZ-eDe"/>
-                            <constraint firstItem="Vwh-Uf-Ef4" firstAttribute="top" secondItem="dUk-MJ-FfE" secondAttribute="top" constant="20" id="bS1-mf-4pR"/>
                             <constraint firstItem="hb0-fs-X8t" firstAttribute="leading" secondItem="x5e-FQ-0UQ" secondAttribute="trailing" constant="-198" id="bor-UV-KAy"/>
                             <constraint firstItem="Cy3-lS-kig" firstAttribute="leading" secondItem="owW-jl-mGt" secondAttribute="trailing" constant="-198" id="cBU-iU-mpR"/>
-                            <constraint firstItem="dUk-MJ-FfE" firstAttribute="leading" secondItem="Vwh-Uf-Ef4" secondAttribute="leading" id="e1L-VJ-ApU"/>
                             <constraint firstItem="iD6-gO-Jqn" firstAttribute="leading" secondItem="1Vm-01-kXE" secondAttribute="trailing" constant="-192" id="ffh-ez-7wx"/>
                             <constraint firstItem="bq1-8m-Zzd" firstAttribute="leading" secondItem="hb0-fs-X8t" secondAttribute="trailing" constant="-429" id="ge2-Q1-fkV"/>
                             <constraint firstItem="cdJ-tp-wa9" firstAttribute="centerY" secondItem="1Vm-01-kXE" secondAttribute="centerY" id="kXH-kU-uqQ"/>
@@ -305,6 +291,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Vwh-Uf-Ef4"/>
                     </view>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="blueCPUImage" destination="Jcd-OS-ht3" id="rSe-B2-zW9"/>
                         <outlet property="blueHardCPUImage" destination="iD6-gO-Jqn" id="n5p-gU-1ib"/>

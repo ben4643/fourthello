@@ -8,7 +8,8 @@
 
 import UIKit
 
-var pieceButtons2D = [[UIButton]]()
+var pieceButtons2DView = [[UIButton]]()
+var pieceButtons2DText = [[String]]()
 var playerTurns: [String] = ["Blue","Red","Green","White"]
 var possibleAIScores = [Int]()
 
@@ -61,14 +62,14 @@ class BoardViewController: UIViewController{
             button.setImage(UIImage(named: "Black"), for: .normal)
             button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         }
-        pieceButtons2D.removeAll()
+        pieceButtons2DView.removeAll()
         for index in 0 ..< pieceButtons.count/14 {
             var tempArr = [UIButton]()
             for j in 0..<pieceButtons.count/14 {
                 let spot = index*14+j
                 tempArr.append(pieceButtons[spot])
             }
-            pieceButtons2D.append(tempArr)
+            pieceButtons2DView.append(tempArr)
         }
         //place the pieces down on the board
         newGame()
@@ -93,8 +94,8 @@ class BoardViewController: UIViewController{
     
     //MARK: New game
     func newGame(){
-        for r in pieceButtons2D.indices{
-            for button in pieceButtons2D[r]{
+        for r in pieceButtons2DView.indices{
+            for button in pieceButtons2DView[r]{
                 button.setImage(UIImage(named: "Black"), for: .normal)
             }
         }
@@ -109,36 +110,36 @@ class BoardViewController: UIViewController{
         redImageView.alpha = 0.25
         whiteImageView.alpha = 0.25
         greenImageView.alpha = 0.25
-        pieceButtons2D[6][6].setImage(UIImage(named:"Blue"), for: .normal)
-        pieceButtons2D[6][7].setImage(UIImage(named:"Red"), for: .normal)
-        pieceButtons2D[7][6].setImage(UIImage(named:"Green"), for: .normal)
-        pieceButtons2D[7][7].setImage(UIImage(named:"White"), for: .normal)
-        pieceButtons2D[5][6].setImage(UIImage(named:"White"), for: .normal)
-        pieceButtons2D[6][5].setImage(UIImage(named:"White"), for: .normal)
-        pieceButtons2D[5][7].setImage(UIImage(named:"Green"), for: .normal)
-        pieceButtons2D[6][8].setImage(UIImage(named:"Green"), for: .normal)
-        pieceButtons2D[7][8].setImage(UIImage(named:"Blue"), for: .normal)
-        pieceButtons2D[8][7].setImage(UIImage(named:"Blue"), for: .normal)
-        pieceButtons2D[7][5].setImage(UIImage(named:"Red"), for: .normal)
-        pieceButtons2D[8][6].setImage(UIImage(named:"Red"), for: .normal)
+        pieceButtons2DView[6][6].setImage(UIImage(named:"Blue"), for: .normal)
+        pieceButtons2DView[6][7].setImage(UIImage(named:"Red"), for: .normal)
+        pieceButtons2DView[7][6].setImage(UIImage(named:"Green"), for: .normal)
+        pieceButtons2DView[7][7].setImage(UIImage(named:"White"), for: .normal)
+        pieceButtons2DView[5][6].setImage(UIImage(named:"White"), for: .normal)
+        pieceButtons2DView[6][5].setImage(UIImage(named:"White"), for: .normal)
+        pieceButtons2DView[5][7].setImage(UIImage(named:"Green"), for: .normal)
+        pieceButtons2DView[6][8].setImage(UIImage(named:"Green"), for: .normal)
+        pieceButtons2DView[7][8].setImage(UIImage(named:"Blue"), for: .normal)
+        pieceButtons2DView[8][7].setImage(UIImage(named:"Blue"), for: .normal)
+        pieceButtons2DView[7][5].setImage(UIImage(named:"Red"), for: .normal)
+        pieceButtons2DView[8][6].setImage(UIImage(named:"Red"), for: .normal)
         blueImageView.image = UIImage(named: "Blue")
         redImageView.image = UIImage(named: "Red")
         whiteImageView.image = UIImage(named: "White")
         greenImageView.image = UIImage(named: "Green")
         enableButtons()
         updateLabels()
-        pieceButtons2D[6][6].isUserInteractionEnabled = false
-        pieceButtons2D[6][7].isUserInteractionEnabled = false
-        pieceButtons2D[7][6].isUserInteractionEnabled = false
-        pieceButtons2D[7][7].isUserInteractionEnabled = false
-        pieceButtons2D[5][6].isUserInteractionEnabled = false
-        pieceButtons2D[6][5].isUserInteractionEnabled = false
-        pieceButtons2D[5][7].isUserInteractionEnabled = false
-        pieceButtons2D[6][8].isUserInteractionEnabled = false
-        pieceButtons2D[7][8].isUserInteractionEnabled = false
-        pieceButtons2D[8][7].isUserInteractionEnabled = false
-        pieceButtons2D[7][5].isUserInteractionEnabled = false
-        pieceButtons2D[8][6].isUserInteractionEnabled = false
+        pieceButtons2DView[6][6].isUserInteractionEnabled = false
+        pieceButtons2DView[6][7].isUserInteractionEnabled = false
+        pieceButtons2DView[7][6].isUserInteractionEnabled = false
+        pieceButtons2DView[7][7].isUserInteractionEnabled = false
+        pieceButtons2DView[5][6].isUserInteractionEnabled = false
+        pieceButtons2DView[6][5].isUserInteractionEnabled = false
+        pieceButtons2DView[5][7].isUserInteractionEnabled = false
+        pieceButtons2DView[6][8].isUserInteractionEnabled = false
+        pieceButtons2DView[7][8].isUserInteractionEnabled = false
+        pieceButtons2DView[8][7].isUserInteractionEnabled = false
+        pieceButtons2DView[7][5].isUserInteractionEnabled = false
+        pieceButtons2DView[8][6].isUserInteractionEnabled = false
         
         if playersSelection[0] == "hardcpu" {//Test
             activateActivityIndicator()
@@ -207,9 +208,9 @@ class BoardViewController: UIViewController{
         var tempBoard = [UIImage](repeating: UIImage(named: "Black")!, count: 0)
         
         var counter = 0
-        for r in pieceButtons2D.indices {
-            for c in pieceButtons2D[r].indices{
-                if let image = pieceButtons2D[r][c].currentImage{
+        for r in pieceButtons2DView.indices {
+            for c in pieceButtons2DView[r].indices{
+                if let image = pieceButtons2DView[r][c].currentImage{
                     tempBoard.insert(image, at: counter)
                 }
                 counter += 1
@@ -220,9 +221,9 @@ class BoardViewController: UIViewController{
     
     func updateBoard(board: [UIImage]){//takes array of UIImages from makeTempBoard to set pieceButtons2D to correct images after making a change to the board
         var count = 0
-        for r in pieceButtons2D.indices{
-            for c in pieceButtons2D.indices{
-                pieceButtons2D[r][c].setImage(board[count], for: .normal)
+        for r in pieceButtons2DView.indices{
+            for c in pieceButtons2DView.indices{
+                pieceButtons2DView[r][c].setImage(board[count], for: .normal)
                 count += 1
             }
         }
@@ -297,9 +298,9 @@ class BoardViewController: UIViewController{
     }
     
     func possibleMoves() -> Bool{//Checks if there are any legal moves to make
-        for r in pieceButtons2D.indices{
-            for c in pieceButtons2D[r].indices{
-                if pieceButtons2D[r][c].currentImage == UIImage(named: "Black"){
+        for r in pieceButtons2DView.indices{
+            for c in pieceButtons2DView[r].indices{
+                if pieceButtons2DView[r][c].currentImage == UIImage(named: "Black"){
                     if game.checkLegalMove(atRow: r, atColumn: c, testing: true){
                         count = 0
                         return true
@@ -311,9 +312,9 @@ class BoardViewController: UIViewController{
     }
     
     func locateButton(button: UIButton) -> (Int,Int){
-        for r in pieceButtons2D.indices {
-            for c in pieceButtons2D[r].indices{
-                if pieceButtons2D[r][c] == button{
+        for r in pieceButtons2DView.indices {
+            for c in pieceButtons2DView[r].indices{
+                if pieceButtons2DView[r][c] == button{
                     return (r,c)
                 }
             }
@@ -322,8 +323,8 @@ class BoardViewController: UIViewController{
     }
     
     func enableButtons(){
-        for r in pieceButtons2D.indices {
-            for button in pieceButtons2D[r]{
+        for r in pieceButtons2DView.indices {
+            for button in pieceButtons2DView[r]{
                 if button.currentImage == UIImage(named: "Black"){
                     button.isUserInteractionEnabled = true
                 }
@@ -332,8 +333,8 @@ class BoardViewController: UIViewController{
     }
     
     func disableButtons(){
-        for r in pieceButtons2D.indices {
-            for button in pieceButtons2D[r]{
+        for r in pieceButtons2DView.indices {
+            for button in pieceButtons2DView[r]{
                 button.isUserInteractionEnabled = false
             }
         }
@@ -370,9 +371,9 @@ class BoardViewController: UIViewController{
         var c: Int
         r = Int(arc4random_uniform(14))
         c = Int(arc4random_uniform(14))
-        if pieceButtons2D[r][c].currentImage == UIImage(named: "Black"){
+        if pieceButtons2DView[r][c].currentImage == UIImage(named: "Black"){
             if game.checkLegalMove(atRow: r, atColumn: c, testing: true){
-                buttonPressed(sender: pieceButtons2D[r][c])
+                buttonPressed(sender: pieceButtons2DView[r][c])
                 enableButtons()
             }
         }
@@ -387,11 +388,11 @@ class BoardViewController: UIViewController{
         DispatchQueue.global(qos: .background).async{
             DispatchQueue.main.async{
                 if !self.quitting{
-                    for r in pieceButtons2D.indices{
-                        for c in pieceButtons2D[r].indices{
+                    for r in pieceButtons2DView.indices{
+                        for c in pieceButtons2DView[r].indices{
                             self.updateBoard(board: startBoard)
                             print("\(r) \(c)")
-                            if pieceButtons2D[r][c].currentImage == UIImage(named: "Black"){
+                            if pieceButtons2DView[r][c].currentImage == UIImage(named: "Black"){
                                 if self.game.checkLegalMove(atRow: r, atColumn: c, testing: false){
                                     if self.game.checkScore(){
                                         switch playerTurns[0] {
@@ -429,7 +430,7 @@ class BoardViewController: UIViewController{
                         }
                     }
                     print(index)
-                    self.buttonPressed(sender: pieceButtons2D[rPosition[index]][cPosition[index]])
+                    self.buttonPressed(sender: pieceButtons2DView[rPosition[index]][cPosition[index]])
                     self.enableButtons()
                 }
             }

@@ -79,12 +79,12 @@ class GameLogic{
         
         for index in stride(from: c+(iteration*2), through: limit, by: iteration){
             
-            if UIImage(named: playerTurns[0]) == pieceButtons2D[r][index].currentImage{
+            if UIImage(named: playerTurns[0]) == pieceButtons2DView[r][index].currentImage{
                 if !testingMove{
                     completeMove(fromRow: r, fromColumn: c, toRow: r, toColumn: index, direction: direction)
                 }
                 return true
-            }else if pieceButtons2D[r][index].currentImage == UIImage(named: "Black") {
+            }else if pieceButtons2DView[r][index].currentImage == UIImage(named: "Black") {
                 break
             }
         }
@@ -106,12 +106,12 @@ class GameLogic{
         }
         
         for index in stride(from: r+(iteration*2), through: limit, by: iteration){
-            if UIImage(named: playerTurns[0]) == pieceButtons2D[index][c].currentImage{
+            if UIImage(named: playerTurns[0]) == pieceButtons2DView[index][c].currentImage{
                 if !testingMove{
                     completeMove(fromRow: r, fromColumn: c, toRow: index, toColumn: c, direction: direction)
                 }
                 return true
-            }else if pieceButtons2D[index][c].currentImage == UIImage(named: "Black") {
+            }else if pieceButtons2DView[index][c].currentImage == UIImage(named: "Black") {
                 break
             }
         }
@@ -156,12 +156,12 @@ class GameLogic{
             if r1 == limitR + iterationR || c1 == limitC + iterationC {
                 break
             }
-                 if UIImage(named: playerTurns[0]) == pieceButtons2D[r1][c1].currentImage && count >= 2{
+                 if UIImage(named: playerTurns[0]) == pieceButtons2DView[r1][c1].currentImage && count >= 2{
                     if !testingMove{
                         completeMove(fromRow: r, fromColumn: c, toRow: r1, toColumn: c1 , direction: direction)
                     }
                     return true
-                }else if pieceButtons2D[r1][c1].currentImage == UIImage(named: "Black") {
+                }else if pieceButtons2DView[r1][c1].currentImage == UIImage(named: "Black") {
                     break
                 }
                 count += 1
@@ -186,7 +186,7 @@ class GameLogic{
                 for c in stride(from: c1, to: c2, by: iterationC){
                     countC += 1
                     if countR == countC{
-                        pieceButtons2D[r][c].setImage(UIImage(named: playerTurns[0]), for: .normal)
+                        pieceButtons2DView[r][c].setImage(UIImage(named: playerTurns[0]), for: .normal)
                     }
                 }
             }
@@ -194,7 +194,7 @@ class GameLogic{
             iterationR = -1
             iterationC = 0
             for r in stride(from: r1, to: r2, by: iterationR){
-                    pieceButtons2D[r][c1].setImage(UIImage(named: playerTurns[0]), for: .normal)
+                    pieceButtons2DView[r][c1].setImage(UIImage(named: playerTurns[0]), for: .normal)
             }
         case 3:
             iterationR = -1
@@ -205,7 +205,7 @@ class GameLogic{
                 for c in stride(from: c1, to: c2, by: iterationC){
                     countC += 1
                     if countR == countC{
-                        pieceButtons2D[r][c].setImage(UIImage(named: playerTurns[0]), for: .normal)
+                        pieceButtons2DView[r][c].setImage(UIImage(named: playerTurns[0]), for: .normal)
                     }
                 }
             }
@@ -213,13 +213,13 @@ class GameLogic{
             iterationR = 0
             iterationC = -1
                 for c in stride(from: c1, to: c2, by: iterationC){
-                    pieceButtons2D[r1][c].setImage(UIImage(named: playerTurns[0]), for: .normal)
+                    pieceButtons2DView[r1][c].setImage(UIImage(named: playerTurns[0]), for: .normal)
                 }
         case 5:
             iterationR = 0
             iterationC = 1
                 for c in stride(from: c1, to: c2, by: iterationC){
-                    pieceButtons2D[r1][c].setImage(UIImage(named: playerTurns[0]), for: .normal)
+                    pieceButtons2DView[r1][c].setImage(UIImage(named: playerTurns[0]), for: .normal)
                 }
         case 6:
             iterationR = 1
@@ -230,7 +230,7 @@ class GameLogic{
                 for c in stride(from: c1, to: c2, by: iterationC){
                     countC += 1
                     if countR == countC{
-                        pieceButtons2D[r][c].setImage(UIImage(named: playerTurns[0]), for: .normal)
+                        pieceButtons2DView[r][c].setImage(UIImage(named: playerTurns[0]), for: .normal)
                     }
                 }
             }
@@ -238,7 +238,7 @@ class GameLogic{
             iterationR = 1
             iterationC = 0
             for r in stride(from: r1, to: r2, by: iterationR){
-                    pieceButtons2D[r][c1].setImage(UIImage(named: playerTurns[0]), for: .normal)
+                    pieceButtons2DView[r][c1].setImage(UIImage(named: playerTurns[0]), for: .normal)
             }
         case 8:
             iterationR = 1
@@ -249,7 +249,7 @@ class GameLogic{
                 for c in stride(from: c1, to: c2, by: iterationC){
                     countC += 1
                     if countR == countC{
-                        pieceButtons2D[r][c].setImage(UIImage(named: playerTurns[0]), for: .normal)
+                        pieceButtons2DView[r][c].setImage(UIImage(named: playerTurns[0]), for: .normal)
                     }
                 }
             }
@@ -264,12 +264,12 @@ class GameLogic{
         var returnValue = false
         if r != 0{
             if c != 0 {
-                if (pieceButtons2D[r-1][c-1].currentImage != UIImage(named: "Black") && pieceButtons2D[r-1][c-1].currentImage != UIImage(named: playerTurns[0])){ //Up Left
+                if (pieceButtons2DView[r-1][c-1].currentImage != UIImage(named: "Black") && pieceButtons2DView[r-1][c-1].currentImage != UIImage(named: playerTurns[0])){ //Up Left
                     
                         returnValue = checkDiagonal(atRow: r, atColumn: c, direction: 1)
                 }
             }
-            if (pieceButtons2D[r-1][c].currentImage != UIImage(named: "Black") && pieceButtons2D[r-1][c].currentImage != UIImage(named: playerTurns[0])){ //Up
+            if (pieceButtons2DView[r-1][c].currentImage != UIImage(named: "Black") && pieceButtons2DView[r-1][c].currentImage != UIImage(named: playerTurns[0])){ //Up
                 if !returnValue {
                     returnValue = checkY(atRow: r, atColumn: c, direction: 2)
                 }else{
@@ -277,7 +277,7 @@ class GameLogic{
                 }
             }
             if c != 13 {
-                if (pieceButtons2D[r-1][c+1].currentImage != UIImage(named: "Black") && pieceButtons2D[r-1][c+1].currentImage != UIImage(named: playerTurns[0])){ //Up Right
+                if (pieceButtons2DView[r-1][c+1].currentImage != UIImage(named: "Black") && pieceButtons2DView[r-1][c+1].currentImage != UIImage(named: playerTurns[0])){ //Up Right
                     if !returnValue {
                         returnValue = checkDiagonal(atRow: r, atColumn: c, direction: 3)
                     }else {
@@ -287,7 +287,7 @@ class GameLogic{
             }
         }
         if c != 0 {
-            if (pieceButtons2D[r][c-1].currentImage != UIImage(named: "Black") && pieceButtons2D[r][c-1].currentImage != UIImage(named: playerTurns[0])) { //Left
+            if (pieceButtons2DView[r][c-1].currentImage != UIImage(named: "Black") && pieceButtons2DView[r][c-1].currentImage != UIImage(named: playerTurns[0])) { //Left
                 if !returnValue {
                     returnValue = checkX(atRow: r, atColumn: c, direction: 4)
                 }else {
@@ -296,7 +296,7 @@ class GameLogic{
             }
         }
         if c != 13{
-            if (pieceButtons2D[r][c+1].currentImage != UIImage(named: "Black") && pieceButtons2D[r][c+1].currentImage != UIImage(named: playerTurns[0]) ){ //Right
+            if (pieceButtons2DView[r][c+1].currentImage != UIImage(named: "Black") && pieceButtons2DView[r][c+1].currentImage != UIImage(named: playerTurns[0]) ){ //Right
                 if !returnValue {
                     returnValue = checkX(atRow: r, atColumn: c, direction: 5)
                 }else{
@@ -306,7 +306,7 @@ class GameLogic{
         }
         if r != 13{
             if c != 0 {
-                if (pieceButtons2D[r+1][c-1].currentImage != UIImage(named: "Black") && pieceButtons2D[r+1][c-1].currentImage != UIImage(named: playerTurns[0]) ){ //Down Left
+                if (pieceButtons2DView[r+1][c-1].currentImage != UIImage(named: "Black") && pieceButtons2DView[r+1][c-1].currentImage != UIImage(named: playerTurns[0]) ){ //Down Left
                     if !returnValue {
                         returnValue = checkDiagonal(atRow: r, atColumn: c, direction: 6)
                     }else{
@@ -314,7 +314,7 @@ class GameLogic{
                     }
                 }
             }
-            if (pieceButtons2D[r+1][c].currentImage != UIImage(named: "Black") && pieceButtons2D[r+1][c].currentImage != UIImage(named: playerTurns[0]) ){//Down
+            if (pieceButtons2DView[r+1][c].currentImage != UIImage(named: "Black") && pieceButtons2DView[r+1][c].currentImage != UIImage(named: playerTurns[0]) ){//Down
                 if !returnValue {
                     returnValue = checkY(atRow: r, atColumn: c, direction: 7)
                 } else {
@@ -322,7 +322,7 @@ class GameLogic{
                 }
             }
             if c != 13 {
-                if (pieceButtons2D[r+1][c+1].currentImage != UIImage(named: "Black") && pieceButtons2D[r+1][c+1].currentImage != UIImage(named: playerTurns[0]) ){//Down Right
+                if (pieceButtons2DView[r+1][c+1].currentImage != UIImage(named: "Black") && pieceButtons2DView[r+1][c+1].currentImage != UIImage(named: playerTurns[0]) ){//Down Right
                     if !returnValue {
                         returnValue = checkDiagonal(atRow: r, atColumn: c, direction: 8)
                     }else {
@@ -350,15 +350,15 @@ class GameLogic{
         greenScore = 0
         whiteScore = 0
         blankSpaces = 0
-        for r in pieceButtons2D.indices {
-            for c in pieceButtons2D.indices{
-                if pieceButtons2D[r][c].currentImage == UIImage(named:"Blue"){
+        for r in pieceButtons2DView.indices {
+            for c in pieceButtons2DView.indices{
+                if pieceButtons2DView[r][c].currentImage == UIImage(named:"Blue"){
                     blueScore += 1
-                } else if pieceButtons2D[r][c].currentImage == UIImage(named:"Green"){
+                } else if pieceButtons2DView[r][c].currentImage == UIImage(named:"Green"){
                     greenScore += 1
-                } else if pieceButtons2D[r][c].currentImage == UIImage(named:"White") {
+                } else if pieceButtons2DView[r][c].currentImage == UIImage(named:"White") {
                     whiteScore += 1
-                } else if pieceButtons2D[r][c].currentImage == UIImage(named:"Red") {
+                } else if pieceButtons2DView[r][c].currentImage == UIImage(named:"Red") {
                     redScore += 1
                 } else {
                     blankSpaces += 1
